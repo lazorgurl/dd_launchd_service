@@ -1,0 +1,17 @@
+black==23.1.0
+boto3==1.26.89
+botocore==1.29.89
+cffi==1.15.1
+click==8.1.3
+docutils==0.20.1
+edenscm==0.2.20230523.post92610+f12b7eee
+jmespath==1.0.1
+mypy-extensions==1.0.0
+packaging==23.0
+pathspec==0.11.0
+platformdirs==3.1.1
+pycparser==2.21
+python-dateutil==2.8.2
+s3transfer==0.6.0
+six==1.16.0
+urllib3==1.26.15
