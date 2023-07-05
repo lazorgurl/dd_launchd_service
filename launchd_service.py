@@ -1,5 +1,5 @@
-import subprocess
 from datadog_checks.checks import AgentCheck
+from datadog_checks.base.utils import subprocess_output
 from datadog_checks.base.types import ServiceCheck
 from dataclasses import dataclass
 from typing import List
@@ -16,7 +16,9 @@ class LaunchdListing:
     services: List[LaunchdService]
 
     def __init__(self):
-        output = subprocess.check_output(["launchctl", "list"])
+        output = subprocess_output.get_subprocess_output(
+            ["launchctl", "list"], raise_on_empty_output=True
+        )
         self.services = [
             LaunchdService(row[0], row[1], row[2])
             for row in list(
@@ -41,7 +43,7 @@ class LaunchdServiceCheck(AgentCheck):
         try:
             launchd = LaunchdListing()
         except Exception:
-            self.service_check(item.name, ServiceCheck.UNKNOWN)
+            self.service_check(instance["name"], ServiceCheck.UNKNOWN)
             return
 
         if launchd.is_running(instance["label"]):
