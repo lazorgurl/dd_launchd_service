@@ -1,0 +1,4 @@
+init_config:
+instances:
+  - name: spotlight
+    label: 'com.apple.Spotlight'
